@@ -1,5 +1,5 @@
 {
-  "name": "solid-start-blog",
+  "name": "test",
   "scripts": {
     "dev": "solid-start dev",
     "build": "solid-start build",
@@ -7,24 +7,20 @@
   },
   "type": "module",
   "devDependencies": {
-    "@mdx-js/rollup": "^2.1.5",
-    "rollup": "^3.2.5",
-    "sass": "^1.56.1",
-    "solid-start-node": "^0.2.0",
-    "typescript": "^4.8.4",
-    "vite": "^3.1.8"
+    "@mdx-js/rollup": "^2.3.0",
+    "solid-start-node": "^0.3.10",
+    "typescript": "^4.9.5",
+    "vite": "^4.4.9"
   },
   "dependencies": {
-    "@solidjs/meta": "^0.28.0",
-    "@solidjs/router": "^0.5.0",
-    "solid-js": "^1.6.0",
-    "solid-mdx": "^0.0.6",
-    "solid-start": "^0.2.0",
-    "solid-start-vercel": "^0.2.5",
-    "solid-styled-components": "^0.28.5",
-    "undici": "^5.11.0"
+    "@solidjs/meta": "^0.29.1",
+    "@solidjs/router": "^0.8.3",
+    "solid-js": "^1.8.5",
+    "solid-mdx": "^0.0.7",
+    "solid-start": "^0.3.10",
+    "solid-styled-components": "^0.28.5"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   }
 }
