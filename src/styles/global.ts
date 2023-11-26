@@ -8,6 +8,7 @@ export const GlobalStyles = createGlobalStyles`
     font-family: ${(props: any) => props?.theme.fonts.body};
     line-height: 1.5;
     letter-spacing: 0.05em;
+    color: ${(props: any) => props?.theme.colors.primary};
   }
 
   h1, h2, h3, h4, h5, h6 {
