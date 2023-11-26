@@ -28,7 +28,7 @@ export const GlobalStyles = createGlobalStyles`
   }
 
   p {
-    margin-bottom: 1em;
+    padding-bottom: 16px;
   }
 
   a {

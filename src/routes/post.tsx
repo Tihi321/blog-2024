@@ -1,4 +1,3 @@
-import { createEffect, createSignal } from "solid-js";
 import { useRouteData, RouteDataArgs, Outlet, createRouteData } from "solid-start";
 import { getMetadata } from "~/utils/posts";
 import { get, find, isEqual } from "lodash";
@@ -10,8 +9,21 @@ const Title = styled("h1")`
   margin: 8px 0;
 `;
 
-const Image = styled("img")`
+const HeaderImage = styled("div")<{ src: string }>`
   width: 100%;
+  height: 400px;
+  background: ${(props) => `url("${props.src}")`};
+  background-size: cover;
+  background-position: center;
+`;
+
+const Header = styled("header")`
+  padding-bottom: 32px;
+`;
+
+const HeaderInfo = styled("div")`
+  display: flex;
+  justify-content: space-between;
 `;
 
 export function routeData({ location }: RouteDataArgs) {
@@ -28,10 +40,14 @@ export default function Post() {
   return (
     <>
       <PostHead title={data()?.title || ""} description={data()?.description || ""} />
-      <header>
-        <Image src={data()?.thumbnailUrl || ""}></Image>
+      <Header>
         <Title>{data()?.title || ""}</Title>
-      </header>
+        <HeaderImage src={data()?.thumbnailUrl || ""}></HeaderImage>
+        <HeaderInfo>
+          <div>{data()?.date || ""}</div>
+          <div>{data()?.readingTime || ""} min</div>
+        </HeaderInfo>
+      </Header>
       <Outlet />
     </>
   );
