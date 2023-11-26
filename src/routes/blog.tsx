@@ -10,10 +10,10 @@ type Meta = {
 
 export const routeData = () => {
   return createRouteData(async () => {
-    const files = import.meta.glob("./blog/*.mdx");
+    const files = import.meta.glob("./post/*.mdx");
 
     const posts = Object.keys(files).map(async (file) => {
-      const slug = file.replace("./blog/", "").replace(".mdx", "");
+      const slug = file.replace("./post/", "").replace(".mdx", "");
       const meta = await files[file]();
 
       return { slug, ...((await meta) as Meta) };
@@ -32,7 +32,7 @@ export default function Blog() {
       <section>
         <For each={posts()}>
           {(post) => (
-            <A href={`/blog/${post.slug}`}>
+            <A href={`/post/${post.slug}`}>
               <div>
                 <img src={post.thumbnailUrl} alt="thumbnail" loading="lazy" />
               </div>

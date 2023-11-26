@@ -20,6 +20,7 @@ function Nav() {
     <Container>
       <A href="/">HOME</A>
       <A href="/about">ABOUT</A>
+      <A href="/blog">Blog</A>
     </Container>
   );
 }

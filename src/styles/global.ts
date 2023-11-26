@@ -39,7 +39,6 @@ export const GlobalStyles = createGlobalStyles`
 
   body {
     display: flex;
-    min-height: 100vh;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
