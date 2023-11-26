@@ -1,26 +1,9 @@
 import { For } from "solid-js";
 import { A, createRouteData, useRouteData } from "solid-start";
-
-type Meta = {
-  title: string;
-  date: string;
-  description: string;
-  thumbnailUrl: string;
-};
+import { getMetadata } from "~/utils/posts";
 
 export const routeData = () => {
-  return createRouteData(async () => {
-    const files = import.meta.glob("./post/*.mdx");
-
-    const posts = Object.keys(files).map(async (file) => {
-      const slug = file.replace("./post/", "").replace(".mdx", "");
-      const meta = await files[file]();
-
-      return { slug, ...((await meta) as Meta) };
-    });
-
-    return Promise.all(posts);
-  });
+  return createRouteData(getMetadata);
 };
 
 export default function Blog() {

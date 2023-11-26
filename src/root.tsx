@@ -1,8 +1,7 @@
 // @refresh reload
-import { Suspense } from "solid-js";
+import { Suspense, createSignal } from "solid-js";
 import { ThemeProvider } from "solid-styled-components";
 import {
-  A,
   Body,
   ErrorBoundary,
   FileRoutes,
@@ -13,11 +12,25 @@ import {
   Scripts,
   Title,
 } from "solid-start";
-import Nav from "./components/Nav";
-import { light } from "./styles/theme";
-import { GlobalStyles } from "./styles/global";
+import { Nav } from "~/components/header/Nav";
+import { GlobalStyles } from "~/styles/global";
+import { Main } from "~/components/layout/Main";
+import { ThemeName, darkTheme, lightTheme } from "./styles/theme";
+
+export const getInitialTheme = (): ThemeName => {
+  const savedTheme = localStorage.getItem("theme") as ThemeName | null;
+  return savedTheme ?? "light";
+};
 
 export default function Root() {
+  const [themeName, setThemeName] = createSignal<ThemeName>(getInitialTheme());
+
+  const toggleTheme = () => {
+    const newTheme = themeName() === "light" ? "dark" : "light";
+    setThemeName(newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
+
   return (
     <Html lang="en">
       <Head>
@@ -26,16 +39,16 @@ export default function Root() {
         <Meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Body>
-        <ThemeProvider theme={light}>
+        <ThemeProvider theme={themeName() === "light" ? darkTheme : lightTheme}>
           <GlobalStyles />
           <ErrorBoundary>
-            <Nav />
             <Suspense>
-              <main>
+              <Main>
+                <Nav onThemeChange={toggleTheme} theme={themeName()} />
                 <Routes>
                   <FileRoutes />
                 </Routes>
-              </main>
+              </Main>
             </Suspense>
           </ErrorBoundary>
           <Scripts />
