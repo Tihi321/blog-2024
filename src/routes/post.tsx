@@ -1,5 +1,5 @@
 import { useRouteData, RouteDataArgs, Outlet, createRouteData } from "solid-start";
-import { getMetadata } from "~/utils/posts";
+import { PostMeta, getPosts } from "~/utils/posts";
 import { get, find, isEqual } from "lodash";
 import { styled } from "solid-styled-components";
 import { PostHead } from "~/components/head/PostHead";
@@ -28,24 +28,24 @@ const HeaderInfo = styled("div")`
 
 export function routeData({ location }: RouteDataArgs) {
   return createRouteData(async () => {
-    const metadatas = await getMetadata();
+    const posts = await getPosts();
     const slug = get(location, ["pathname"]).replace("/post/", "");
-    const metadata = find(metadatas, (values) => isEqual(get(values, ["slug"]), slug));
-    return metadata;
+    const post = find(posts, (values) => isEqual(get(values, ["slug"]), slug));
+    return post;
   });
 }
 
 export default function Post() {
-  const data = useRouteData<typeof routeData>();
+  const post = useRouteData<() => () => PostMeta>();
   return (
     <>
-      <PostHead title={data()?.title || ""} description={data()?.description || ""} />
+      <PostHead title={post()?.title || ""} description={post()?.description || ""} />
       <Header>
-        <Title>{data()?.title || ""}</Title>
-        <HeaderImage src={data()?.thumbnailUrl || ""}></HeaderImage>
+        <Title>{post()?.title || ""}</Title>
+        <HeaderImage src={post()?.thumbnailUrl || ""}></HeaderImage>
         <HeaderInfo>
-          <div>{data()?.date || ""}</div>
-          <div>{data()?.readingTime || ""} min</div>
+          <div>{post()?.date || ""}</div>
+          <div>{post()?.readingTime || ""} min</div>
         </HeaderInfo>
       </Header>
       <Outlet />
