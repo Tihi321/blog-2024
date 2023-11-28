@@ -1,11 +1,18 @@
 import { For } from "solid-js";
-import { A, createRouteData, useRouteData } from "solid-start";
+import { RouteDataArgs, createRouteData, useRouteData } from "solid-start";
 import { PostMeta, getPosts } from "~/utils/posts";
 import { styled } from "solid-styled-components";
 import { Post } from "~/components/post/Post";
+import { get } from "lodash";
 
-export const routeData = () => {
-  return createRouteData(getPosts);
+export const routeData = ({ location }: RouteDataArgs) => {
+  return createRouteData(async () => {
+    const posts = await getPosts();
+    const page = get(location, ["pathname"]).replace("/blog/", "");
+    console.log(page);
+
+    return posts;
+  });
 };
 
 const Title = styled("h1")`

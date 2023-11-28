@@ -1,19 +1,15 @@
-import { get, filter, includes } from "lodash";
+import { get } from "lodash";
 import { For } from "solid-js";
 import { createRouteData, useRouteData, RouteDataArgs } from "solid-start";
-import { PostMeta, getPosts } from "~/utils/posts";
+import { PostMeta, getCategorizedPosts } from "~/utils/posts";
 import { styled } from "solid-styled-components";
 import { Post } from "~/components/post/Post";
 
 export function routeData({ location }: RouteDataArgs) {
   return createRouteData(async () => {
-    const posts = await getPosts();
+    const posts = await getCategorizedPosts();
     const category = get(location, ["pathname"]).replace("/category/", "");
-    console.log({
-      posts,
-      category,
-    });
-    return { posts: filter(posts, (post) => includes(post.categories, category)), category };
+    return { posts: get(posts, [category], []), category };
   });
 }
 
