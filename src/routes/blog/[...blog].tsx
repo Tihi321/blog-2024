@@ -45,8 +45,6 @@ const PaginationArrowLink = styled("a")<{ disabled?: boolean }>`
 export default function Blog() {
   const values = useRouteData<() => () => { posts: PostMeta[]; paged: number; pages: number }>();
 
-  console.log(values());
-
   return (
     <div>
       <Title>Blog</Title>
