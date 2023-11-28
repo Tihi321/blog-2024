@@ -29,6 +29,7 @@ export default function Root() {
     const newTheme = themeName() === "light" ? "dark" : "light";
     setThemeName(newTheme);
     localStorage.setItem("theme", newTheme);
+    location.reload();
   };
 
   return (
@@ -44,7 +45,7 @@ export default function Root() {
           <ErrorBoundary>
             <Suspense>
               <Main>
-                <Nav onThemeChange={toggleTheme} theme={themeName()} />
+                <Nav onThemeChange={toggleTheme} theme={themeName} />
                 <Routes>
                   <FileRoutes />
                 </Routes>

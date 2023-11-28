@@ -3,7 +3,7 @@ import { styled } from "solid-styled-components";
 
 type NavProps = {
   onThemeChange: () => void;
-  theme: string;
+  theme: () => string;
 };
 
 const Container = styled("nav")`
@@ -23,7 +23,7 @@ export const Nav = ({ onThemeChange, theme }: NavProps) => {
       <A href="/">HOME</A>
       <A href="/about">ABOUT</A>
       <A href="/blog">Blog</A>
-      <ThemeToggle onClick={onThemeChange}>{theme}</ThemeToggle>
+      <ThemeToggle onClick={onThemeChange}>{theme()}</ThemeToggle>
     </Container>
   );
 };
