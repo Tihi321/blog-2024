@@ -1,4 +1,5 @@
 // @refresh reload
+import "./styles/global.css";
 import { Suspense, createSignal } from "solid-js";
 import { ThemeProvider } from "solid-styled-components";
 import {

@@ -2,7 +2,7 @@ import { styled } from "solid-styled-components";
 
 type TTextInputProps = {
   onInput?: (value: any) => void;
-  onChange?: (value: any) => void;
+  onSubmit?: (value: any) => void;
   placeholder?: string;
   value: string;
   className?: any;
@@ -21,7 +21,7 @@ const Input = styled("input")`
   text-align: left;
   width: 100%;
   color: ${(props) => props?.theme?.colors.ui1};
-  background-color: ${(props) => props?.theme?.colors.ui3};
+  background-color: ${(props) => props?.theme?.colors.ui5};
   border-width: 3px;
   border-style: solid;
   border-color: ${(props) => props?.theme?.colors.ui6};
@@ -31,13 +31,7 @@ const Input = styled("input")`
   }
 `;
 
-export const TextInput = ({
-  onInput,
-  placeholder,
-  value,
-  onChange,
-  className,
-}: TTextInputProps) => {
+export const TextInput = ({ onInput, onSubmit, placeholder, value, ...rest }: TTextInputProps) => {
   return (
     <Input
       onInput={(e) => {
@@ -45,14 +39,14 @@ export const TextInput = ({
           onInput(e.currentTarget.value);
         }
       }}
-      onChange={(e) => {
-        if (onChange) {
-          onChange(e.currentTarget.value);
+      onKeyDown={(e) => {
+        if (e.key === "Enter" && onSubmit) {
+          onSubmit(e.currentTarget.value);
         }
       }}
       placeholder={placeholder}
       value={value}
-      class={className}
+      {...rest}
     />
   );
 };

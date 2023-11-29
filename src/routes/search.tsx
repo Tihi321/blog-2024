@@ -4,7 +4,7 @@ import { styled } from "solid-styled-components";
 import { Posts } from "~/components/post/Posts";
 import { get, filter, includes, toLower } from "lodash";
 import { createComputed, createSignal } from "solid-js";
-import { TextInput } from "~/components/inputs/TextInput";
+import { search } from "~/store/search";
 
 export const routeData = ({ location }: RouteDataArgs) => {
   return createRouteData(async () => {
@@ -20,14 +20,9 @@ const Title = styled("h1")`
   margin: 8px 0;
 `;
 
-const SearchInput = styled(TextInput)`
-  width: 230px;
-`;
-
 export default function Search() {
   const values = useRouteData<() => () => { posts: PostMeta[]; search: string }>();
   const [posts, setPosts] = createSignal(values()?.posts);
-  const [search, setSearch] = createSignal(values()?.search);
 
   createComputed(() => {
     const searchQuery = toLower(search());
@@ -41,7 +36,6 @@ export default function Search() {
   return (
     <div>
       <Title>Search</Title>
-      <SearchInput value={search()} onInput={setSearch} placeholder="Search" />
       <section>
         <Posts posts={posts} />
       </section>
