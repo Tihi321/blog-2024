@@ -1,9 +1,12 @@
 import { Button } from "~/components/inputs/Button";
-export const title = "Build A Blog With Astro";
-export const date = "12, 21, 2022";
-export const description = "Learn Astro by building a blog";
-export const thumbnailUrl = "/posts/astro-blog-thumbnail.jpeg";
-export const categories = ["ai"];
+export const metadata = {
+  title: "Build A Blog With Astro",
+  date: "12, 21, 2022",
+  description: "Learn Astro by building a blog",
+  thumbnailUrl: "/posts/astro-blog-thumbnail.jpeg",
+  categories: ["ai"],
+  featured: false,
+};
 
 <div>
   This is a blog post about <strong>astro build</strong>. <br />

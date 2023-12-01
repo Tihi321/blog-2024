@@ -15,6 +15,10 @@ export const routeData = ({ location }: RouteDataArgs) => {
   });
 };
 
+const Container = styled("main")`
+  padding: 48px 8px;
+`;
+
 const Title = styled("h1")`
   text-align: center;
   margin: 8px 0;
@@ -34,11 +38,11 @@ export default function Search() {
   });
 
   return (
-    <div>
+    <Container>
       <Title>Search</Title>
       <section>
         <Posts posts={posts} />
       </section>
-    </div>
+    </Container>
   );
 }

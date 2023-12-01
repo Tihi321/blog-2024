@@ -9,6 +9,10 @@ const Title = styled("h1")`
   margin: 8px 0;
 `;
 
+const Container = styled("main")`
+  padding: 48px 8px;
+`;
+
 const HeaderImage = styled("div")<{ src: string }>`
   width: 100%;
   height: 400px;
@@ -38,7 +42,7 @@ export function routeData({ location }: RouteDataArgs) {
 export default function Post() {
   const post = useRouteData<() => () => PostMeta>();
   return (
-    <>
+    <Container>
       <PostHead title={post()?.title || ""} description={post()?.description || ""} />
       <Header>
         <Title>{post()?.title || ""}</Title>
@@ -49,6 +53,6 @@ export default function Post() {
         </HeaderInfo>
       </Header>
       <Outlet />
-    </>
+    </Container>
   );
 }

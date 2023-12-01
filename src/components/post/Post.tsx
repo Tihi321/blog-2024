@@ -1,5 +1,6 @@
 import { For } from "solid-js";
 import { styled } from "solid-styled-components";
+import { generateCategoryUrl, generatePostUrl } from "~/utils/posts";
 
 const Container = styled("div")`
   display: flex;
@@ -52,11 +53,11 @@ export const Post = ({
 }) => {
   return (
     <Container>
-      <a href={`/post/${slug}`}>
+      <a href={generatePostUrl(slug)}>
         <Thumbnail src={thumbnailUrl} />
       </a>
       <Info>
-        <a href={`/post/${slug}`}>
+        <a href={generatePostUrl(slug)}>
           <h3>{title}</h3>
         </a>
         <Description>{description}</Description>
@@ -65,7 +66,7 @@ export const Post = ({
         <Categories>
           <For each={categories}>
             {(category) => (
-              <a href={`/category/${category}`}>
+              <a href={generateCategoryUrl(category)}>
                 <span>{category}</span>
               </a>
             )}

@@ -2,7 +2,6 @@ import { For } from "solid-js";
 import { RouteDataArgs, createRouteData, useRouteData } from "solid-start";
 import { PostMeta, getPosts } from "~/utils/posts";
 import { styled } from "solid-styled-components";
-import { Post } from "~/components/post/Post";
 import { get, isEmpty, isEqual, isNumber, toNumber, range } from "lodash";
 import { Posts } from "~/components/post/Posts";
 
@@ -28,6 +27,10 @@ export const routeData = ({ location }: RouteDataArgs) => {
   });
 };
 
+const Container = styled("main")`
+  padding: 48px 8px;
+`;
+
 const Title = styled("h1")`
   text-align: center;
   margin: 8px 0;
@@ -46,7 +49,7 @@ export default function Blog() {
   const values = useRouteData<() => () => { posts: PostMeta[]; paged: number; pages: number }>();
 
   return (
-    <div>
+    <Container>
       <Title>Blog</Title>
       <section>
         <Posts posts={() => values()?.posts} />
@@ -70,6 +73,6 @@ export default function Blog() {
           {">"}
         </PaginationArrowLink>
       </section>
-    </div>
+    </Container>
   );
 }

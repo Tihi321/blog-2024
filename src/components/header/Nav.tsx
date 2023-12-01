@@ -10,6 +10,12 @@ type NavProps = {
 };
 
 const Container = styled("nav")`
+  background-color: ${(props) => props?.theme?.colors.ui6};
+  position: fixed;
+  height: 48px;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: flex-end;
   align-items: center;
