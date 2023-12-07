@@ -1,7 +1,9 @@
 export const colorsLight = {
-  background: "#f8f8f8",
-  ui1: "#333333",
-  ui2: "#0056b3",
+  background: "#d9e2e7",
+  text: "#412f24",
+  altText: "#a39389",
+  ui1: "#775342",
+  ui2: "#fefefe",
   ui3: "#1e90ff",
   ui4: "#0d7fe5",
   ui5: "#d3d3d3",
@@ -9,6 +11,8 @@ export const colorsLight = {
 };
 export const colorsDark = {
   background: "#232739",
+  text: "#412f24",
+  altText: "#a39389",
   ui1: "#e0e0e0",
   ui2: "#4e9afc",
   ui3: "#333333",

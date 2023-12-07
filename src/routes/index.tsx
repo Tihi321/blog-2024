@@ -12,25 +12,72 @@ export const routeData = () => {
   });
 };
 
-const Container = styled("h1")`
+const Container = styled("div")`
   padding: 48px 8px;
-  height: 100vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Title = styled("h1")`
   text-align: center;
   margin: 8px 0;
+  font-weight: bold;
+`;
+
+const FeaturedTitle = styled("h3")`
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 8px 0;
+  font-weight: bold;
+
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid currentColor;
+  }
+
+  &::before {
+    margin-right: 0.5em;
+  }
+
+  &::after {
+    margin-left: 0.5em;
+  }
+`;
+
+const Featured = styled("div")`
+  display: flex;
+  justify-content: space-around;
+  gap: 16px;
+`;
+
+const HomeImage = styled("img")`
+  border: none;
+  width: 100%;
+`;
+
+const Content = styled("div")`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 `;
 
 const Footer = styled("footer")`
+  text-align: center;
   padding: 16px;
-  border-radius: 8px;
-  border: 2px solid #ccc;
+  border-radius: 0 0 24px 24px;
+  border-top: 10px solid ${(props) => props?.theme?.colors.ui1};
+  background-color: ${(props) => props?.theme?.colors.ui2};
   font-size: 16px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 8px;
   justify-content: space-between;
+  margin-top: auto;
 `;
 
 export default function Home() {
@@ -46,13 +93,25 @@ export default function Home() {
 
   return (
     <Container>
-      <Title>Home</Title>
+      <Content>
+        <HomeImage src="/assets/homer-reading.png" />
+      </Content>
+
       <Footer>
-        {map(posts(), (values) => (
-          <a href={generatePostUrl(values?.slug)}>
-            <div>{values?.title}</div>
-          </a>
-        ))}
+        <Title>Blog</Title>
+        <div>
+          I'm a passionate futurist with a deep interest in physics and science. A professional
+          programmer and coder specializing in innovative applications. My fascination with
+          artificial intelligence extends to my hobbies, where I constantly explore AI in various
+          forms and engage in philosophical discussions. My enthusiasm for technology and its
+          potential impact on the future shapes both my career and personal pursuits.
+        </div>
+        <FeaturedTitle>Featured</FeaturedTitle>
+        <Featured>
+          {map(posts(), (values) => (
+            <a href={generatePostUrl(values?.slug)}>{values?.title}</a>
+          ))}
+        </Featured>
       </Footer>
     </Container>
   );
