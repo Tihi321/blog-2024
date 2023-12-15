@@ -51,12 +51,14 @@ const FeaturedTitle = styled("h3")`
 const Featured = styled("div")`
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
   gap: 16px;
 `;
 
 const HomeImage = styled("img")`
   border: none;
   width: 100%;
+  filter: drop-shadow(2px 2px 4px black);
 `;
 
 const Content = styled("div")`

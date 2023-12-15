@@ -36,8 +36,16 @@ const Title = styled("h1")`
   margin: 8px 0;
 `;
 
+const Pagination = styled("div")`
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  font-size: 18px;
+  font-weight: bold;
+`;
+
 const PaginationLink = styled("a")<{ selected?: boolean }>`
-  text-decoration: ${(props) => (props?.selected ? "underline" : "unset")};
+  filter: ${(props) => (props?.selected ? "brightness(0.5)" : "brightness(1)")};
 `;
 
 const PaginationArrowLink = styled("a")<{ disabled?: boolean }>`
@@ -53,25 +61,27 @@ export default function Blog() {
       <Title>Blog</Title>
       <section>
         <Posts posts={() => values()?.posts} />
-        <PaginationArrowLink
-          href={`/blog/${values()?.paged - 1}`}
-          disabled={isEqual(values()?.paged, 0)}
-        >
-          {"<"}
-        </PaginationArrowLink>
-        <For each={range(values()?.pages)}>
-          {(paged) => (
-            <PaginationLink selected={isEqual(paged, values()?.paged)} href={`/blog/${paged}`}>
-              {paged}
-            </PaginationLink>
-          )}
-        </For>
-        <PaginationArrowLink
-          href={`/blog/${values()?.paged + 1}`}
-          disabled={isEqual(values()?.paged, values()?.pages - 1)}
-        >
-          {">"}
-        </PaginationArrowLink>
+        <Pagination>
+          <PaginationArrowLink
+            href={`/blog/${values()?.paged - 1}`}
+            disabled={isEqual(values()?.paged, 0)}
+          >
+            {"<"}
+          </PaginationArrowLink>
+          <For each={range(values()?.pages)}>
+            {(paged) => (
+              <PaginationLink selected={isEqual(paged, values()?.paged)} href={`/blog/${paged}`}>
+                {paged}
+              </PaginationLink>
+            )}
+          </For>
+          <PaginationArrowLink
+            href={`/blog/${values()?.paged + 1}`}
+            disabled={isEqual(values()?.paged, values()?.pages - 1)}
+          >
+            {">"}
+          </PaginationArrowLink>
+        </Pagination>
       </section>
     </Container>
   );

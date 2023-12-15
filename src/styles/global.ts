@@ -32,33 +32,32 @@ export const GlobalStyles = createGlobalStyles`
 
   a {
     text-decoration: none;
-    color: ${(props: any) => props?.theme?.colors.altText};
+    color: ${(props: any) => props?.theme?.colors.secondaryText};
     filter: brightness(1);
     transition: filter 0.2s ease-in-out;
 
     &:hover {
-      filter: brightness(0.5);
+      filter: brightness(1.5);
     }
   }
 
   button, .button {
-    background-color: ${(props: any) => props?.theme?.colors.ui1};
+    background-color: ${(props: any) => props?.theme?.colors.ui7};
     color: ${(props: any) => props?.theme?.colors.text};
     color: white;
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    filter: sepia(0);
+    filter: brightness(1);
     transition: filter 0.2s ease-in-out;
 
     &:hover {
-      filter: sepia(1);
+      filter: brightness(1.5);
     }
   }
 
   img {
-      border: 1px solid ${(props: any) => props?.theme?.colors.ui3};
       display: block;
   }
 

@@ -15,13 +15,15 @@ const Container = styled("nav")`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
   padding: 16px;
+  flex-wrap: wrap;
   border-radius: 24px;
 `;
 
 const ThemeToggle = styled("button")`
   padding: 6px 16px;
+  text-transform: uppercase;
 `;
 
 const LogoContainer = styled("div")`
@@ -33,6 +35,12 @@ const SearchInput = styled(TextInput)`
   padding: 4px 8px;
 `;
 
+const NavLink = styled(A)`
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: ${(props: any) => props?.theme?.fonts.heading};
+`;
+
 export const Nav = ({ onThemeChange, theme }: NavProps) => {
   return (
     <Container>
@@ -41,8 +49,8 @@ export const Nav = ({ onThemeChange, theme }: NavProps) => {
           <LogoDavinci />
         </A>
       </LogoContainer>
-      <A href="/works">WORKS</A>
-      <A href="/blog">Blog</A>
+      <NavLink href="/works">WORKS</NavLink>
+      <NavLink href="/blog">Blog</NavLink>
       <ThemeToggle onClick={onThemeChange}>{theme()}</ThemeToggle>
       <SearchInput
         onSubmit={(value) => {

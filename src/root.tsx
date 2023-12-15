@@ -41,7 +41,7 @@ export default function Root() {
         <Meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Body>
-        <ThemeProvider theme={themeName() === "light" ? darkTheme : lightTheme}>
+        <ThemeProvider theme={themeName() === "dark" ? darkTheme : lightTheme}>
           <GlobalStyles />
           <ErrorBoundary>
             <Suspense>

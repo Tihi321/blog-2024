@@ -20,14 +20,19 @@ const Input = styled("input")`
   border-radius: 6px;
   text-align: left;
   width: 100%;
-  color: ${(props) => props?.theme?.colors.ui1};
+  color: ${(props) => props?.theme?.colors.tertiraryText};
   background-color: ${(props) => props?.theme?.colors.ui5};
   border-width: 3px;
   border-style: solid;
-  border-color: ${(props) => props?.theme?.colors.ui6};
+  border-color: ${(props) => props?.theme?.colors.ui7};
 
   &::placeholder {
-    color: ${(props) => props?.theme?.colors.ui1};
+    color: ${(props) => props?.theme?.colors.tertiraryText};
+  }
+
+  &:active,
+  &:focus {
+    outline: none;
   }
 `;
 

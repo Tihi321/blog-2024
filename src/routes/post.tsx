@@ -49,7 +49,7 @@ export default function Post() {
         <HeaderImage src={post()?.thumbnailUrl || ""}></HeaderImage>
         <HeaderInfo>
           <div>{post()?.date || ""}</div>
-          <div>{post()?.readingTime || ""} min</div>
+          <div>{post()?.readingTime || "0"} min</div>
         </HeaderInfo>
       </Header>
       <Outlet />
